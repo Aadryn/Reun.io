@@ -9,6 +9,7 @@
 
             // Gulp - Plugins
             gulp: require('gulp-help')(gulp),
+            gulp_beautify: require('gulp-beautify'),
             gulp_concat: require('gulp-concat'),
             gulp_debug: require('gulp-debug'),
             gulp_eslint: require('gulp-eslint'),
