@@ -1,8 +1,8 @@
 (function (window, document, tools) {
     'use strict';
 
-    var moduleName = 'Reunio.Home';
+    var moduleName = 'reunio.home';
     var moduleDependencies = [];
-    tools.DeclareAngularModule(moduleName, moduleDependencies);
+    tools.declareAngularModule(moduleName, moduleDependencies);
 
-})(window, document, window.tools);
+}(window, document, window.tools));

@@ -1,7 +1,7 @@
 (function (window, document, tools) {
     'use strict';
 
-    var moduleName = 'Reunio.Profile';
-    var module = tools.RetrieveAngularModule(moduleName);
+    var moduleName = 'reunio.profile';
+    tools.retrieveAngularModule(moduleName);
 
-})(window, document, window.tools);
+}(window, document, window.tools));

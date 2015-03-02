@@ -6,18 +6,19 @@
         // Prepare - Bower
         var wiredepOptions = {};
 
-        plugins.gulp.task('prepare-bower', 'Prepares bower assets to inject dependencies in the "index.html" page.', [], function (callback) {
+        plugins.gulp.task('inject:bower', 'Injects bower assets to the "index.html" page.', [], function (callback) {
             return plugins.gulp.src('./sources/client/index.html')
                 .pipe(plugins.wiredep(wiredepOptions))
                 .pipe(plugins.gulp.dest('./sources/client/'))
-        }, {aliases: ['p-b']});
+        }, {aliases: ['i:b', 'i:B']});
 
         // Prepare - Application
         var injectOptions = {
-            name: 'application'
+            name: 'application',
+            relative: true
         };
 
-        var applicationAssets = [
+        var clientScriptAssets = [
             './sources/client/application/reunio.tool.js',
             './sources/client/application/reunio.application.js',
             './sources/client/application/reunio.configuration.js',
@@ -25,31 +26,62 @@
             './sources/client/application/**/*.configuration.js',
         ];
 
-        plugins.gulp.task('prepare-application', 'Prepares application assets to inject dependencies in the "index.html" page.', [], function (callback) {
+        var clientStyleAssets = [
+            './sources/client/assets/styles/default.css'
+        ];
 
-            var files = plugins.gulp.src(applicationAssets, {read: false});
 
+        plugins.gulp.task('inject:application:scripts', 'Injects application script assets to the "index.html" page.', [], function (callback) {
+            var files = plugins.gulp.src(clientScriptAssets, {read: false});
             return plugins.gulp.src('./sources/client/index.html')
                 .pipe(plugins.gulp_inject(files, injectOptions))
                 .pipe(plugins.gulp.dest('./sources/client/'))
-        }, {aliases: ['p-a']});
+        }, {aliases: ['i:a:sc', 'I:A:SC']});
 
-        // Prepare - Template
-        plugins.gulp.task('prepare-template', 'Prepares template assets to inject dependencies in the "index.html" page.', [], function (callback) {
-        }, {aliases: ['p-t']});
+        plugins.gulp.task('inject:application:styles', 'Injects application style assets to the "index.html" page.', [], function (callback) {
+            var files = plugins.gulp.src(clientStyleAssets, {read: false});
+            return plugins.gulp.src('./sources/client/index.html')
+                .pipe(plugins.gulp_inject(files, injectOptions))
+                .pipe(plugins.gulp.dest('./sources/client/'))
+        }, {aliases: ['i:a:st', 'I:A:ST']})
+
+
+        var ngHtmlOptions = {
+            template: '    $templateCache.put(\'<%= template.url %>\', \'<%= template.escapedContent %>\');'
+        }
+
+        plugins.gulp.task('prepare:application:templates', 'Prepares application template assets to inject dependencies in the "index.html" page.', [], function (callback) {
+            return plugins.gulp.src('./sources/client/application/**/*.html')
+                .pipe(plugins.gulp_minify_html())
+                .pipe(plugins.gulp_ng_html2js(ngHtmlOptions))
+                .pipe(plugins.gulp_concat('reunio.template.js'))
+                .pipe(plugins.gulp_header('(function(window, document, tools){\n  \'use strict\';\n  var moduleName = \'reunio.template\';\n  var module = tools.retrieveAngularModule(moduleName);\n  module.run([\'$templateCache\', function($templateCache){\n'))
+                .pipe(plugins.gulp_footer('\n  }]);\n}(window, document, window.tools));\n'))
+                .pipe(plugins.gulp.dest('./sources/client/application/'))
+        }, {aliases: ['p:a:t', 'P:A:T']});
+
+        plugins.gulp.task('prepare:application:styles', 'Prepares application template assets to inject dependencies in the "index.html" page.', [], function (callback) {
+            return plugins.gulp.src('./sources/client/assets/styles/default.scss')
+                .pipe(plugins.gulp_sass())
+                .pipe(plugins.gulp.dest('./sources/client/assets/styles/'))
+        }, {aliases: ['p:a:st', 'P:A:ST']});
+
+        plugins.gulp.task('prepare:application', 'Prepares application assets to inject dependencies in the "index.html" page.', ['inject:bower', 'inject:application:scripts', 'inject:application:styles'], null, {aliases: ['p:a', 'P:A']})
 
         // Build - Client
 
         var useminOptions = {
-            bower: [plugins.gulp_uglify(), plugins.gulp_rev()],
-            application: [plugins.gulp_uglify(), plugins.gulp_rev()]
+            "styles_bower": [plugins.gulp_minify_css(), plugins.gulp_rev()],
+            "scripts_bower": [plugins.gulp_uglify(), plugins.gulp_rev()],
+            "styles_application": [plugins.gulp_minify_css(), plugins.gulp_rev()],
+            "scripts_application": [plugins.gulp_uglify(), plugins.gulp_rev()]
         };
 
-        plugins.gulp.task('build-client', 'Build the client application.', [], function (callback) {
+        plugins.gulp.task('build:client', 'Build the client application.', ['lint:client'], function (callback) {
             return plugins.gulp.src('./sources/client/index.html')
                 .pipe(plugins.gulp_usemin(useminOptions))
                 .pipe(plugins.gulp.dest('./builds/public'))
-        }, {aliases: ['b-c']});
+        }, {aliases: ['b:c']});
 
         // Build - Server
         var serverAssets = [
@@ -73,27 +105,27 @@
             semicolons: true,  // use semicolons to separate statements? (otherwise, newlines)
         };
 
-        plugins.gulp.task('build-server', 'Build the server application.', [], function (callback) {
+        plugins.gulp.task('build:server', 'Build the server application.', ['lint:server'], function (callback) {
             return plugins.gulp.src(serverAssets)
                 .pipe(plugins.gulp_uglify(uglifyOptions))
                 .pipe(plugins.gulp.dest('./builds'))
-        }, {aliases: ['b-s']});
+        }, {aliases: ['b:s']});
 
         // Lint - Client
-        plugins.gulp.task('lint-client', 'Lint the client application assets.', [], function (callback) {
-            return plugins.gulp.src(applicationAssets)
+        plugins.gulp.task('lint:client', 'Lint the client application assets.', [], function (callback) {
+            return plugins.gulp.src(clientScriptAssets)
                 .pipe(plugins.gulp_eslint())
                 .pipe(plugins.gulp_eslint.format())
                 .pipe(plugins.gulp_eslint.failOnError());
-        }, {aliases: ['l-c']});
+        }, {aliases: ['l:c']});
 
         // Lint - Server
-        plugins.gulp.task('lint-server', 'Lint the server application assets.', [], function (callback) {
+        plugins.gulp.task('lint:server', 'Lint the server application assets.', [], function (callback) {
             return plugins.gulp.src(serverAssets)
                 .pipe(plugins.gulp_eslint())
                 .pipe(plugins.gulp_eslint.format())
                 .pipe(plugins.gulp_eslint.failOnError());
-        }, {aliases: ['l-s']});
+        }, {aliases: ['l:s']});
     };
 
     module.exports = tasks;

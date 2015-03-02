@@ -1,7 +1,7 @@
 (function (window, document, tools) {
     'use strict';
 
-    var moduleName = 'Reunio.Shared';
-    var module = tools.RetrieveAngularModule(moduleName);
+    var moduleName = 'reunio.shared';
+    tools.retrieveAngularModule(moduleName);
 
-})(window, document, window.tools);
+}(window, document, window.tools));

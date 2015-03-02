@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Reun.io</title>
-
     <!-- bower:css -->
+    <link rel="stylesheet" href="../../bower_components/foundation/css/foundation.css"/>
+    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.css"/>
     <!-- endbower -->
+    <!-- application:css -->
+    <link rel="stylesheet" href="assets/styles/default.css">
+    <!-- endinject -->
 </head>
-<body data-ng-app="Reunio">
-<!-- build:bower assets/scripts/library.js -->
+<body data-ng-app="reunio">
+<!-- build:scripts_bower assets/scripts/library.js -->
 <!-- bower:js -->
+<script src="../../bower_components/modernizr/modernizr.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.js"></script>
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-animate/angular-animate.js"></script>
 <script src="../../bower_components/angular-aria/angular-aria.js"></script>
@@ -19,22 +25,25 @@
 <script src="../../bower_components/angular-route/angular-route.js"></script>
 <script src="../../bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="../../bower_components/angular-touch/angular-touch.js"></script>
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<script src="../../bower_components/jquery.cookie/jquery.cookie.js"></script>
+<script src="../../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+<script src="../../bower_components/foundation/js/foundation.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
-
-<!-- build:application assets/scripts/application.js -->
+<!-- build:scripts_application assets/scripts/application.js -->
 <!-- application:js -->
-<script src="/application/reunio.tool.js"></script>
-<script src="/application/reunio.application.js"></script>
-<script src="/application/reunio.configuration.js"></script>
-<script src="/application/home/home.module.js"></script>
-<script src="/application/profile/profile.module.js"></script>
-<script src="/application/layout/layout.module.js"></script>
-<script src="/application/shared/shared.module.js"></script>
-<script src="/application/home/home.configuration.js"></script>
-<script src="/application/profile/profile.configuration.js"></script>
-<script src="/application/layout/layout.configuration.js"></script>
-<script src="/application/shared/shared.configuration.js"></script>
+<script src="application/reunio.tool.js"></script>
+<script src="application/reunio.application.js"></script>
+<script src="application/reunio.configuration.js"></script>
+<script src="application/home/home.module.js"></script>
+<script src="application/layout/layout.module.js"></script>
+<script src="application/profile/profile.module.js"></script>
+<script src="application/shared/shared.module.js"></script>
+<script src="application/home/home.configuration.js"></script>
+<script src="application/layout/layout.configuration.js"></script>
+<script src="application/profile/profile.configuration.js"></script>
+<script src="application/shared/shared.configuration.js"></script>
 <!-- endinject -->
 <!-- endbuild -->
 </body>

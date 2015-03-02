@@ -1,13 +1,13 @@
 (function (window, document, tools) {
     'use strict';
 
-    var moduleName = 'Reunio';
+    var moduleName = 'reunio';
     var moduleDependencies = [
-        'Reunio.Home',
-        'Reunio.Layout',
-        'Reunio.Profile',
-        'Reunio.Shared'
+        'reunio.home',
+        'reunio.layout',
+        'reunio.profile',
+        'reunio.shared'
     ];
-    var module = tools.DeclareAngularModule(moduleName, moduleDependencies);
+    tools.declareAngularModule(moduleName, moduleDependencies);
 
-})(window, document, window.tools);
+}(window, document, window.tools));

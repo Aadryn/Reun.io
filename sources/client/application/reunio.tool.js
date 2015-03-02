@@ -1,19 +1,19 @@
-(function (window, document) {
+(function (window) {
     'use strict';
 
     var tools = window.tools || {};
 
-    tools.DeclareAngularModule = function (moduleName, moduleDependencies) {
-        var angular = betclic.tools.CheckAngularLibrary();
+    tools.declareAngularModule = function (moduleName, moduleDependencies) {
+        var angular = tools.checkAngularLibrary();
         return angular.module(moduleName, moduleDependencies);
     };
 
-    tools.RetrieveAngularModule = function (moduleName) {
-        var angular = betclic.tools.CheckAngularLibrary();
-        return betclic.tools.CheckAngularModuleExist(angular, moduleName);
+    tools.retrieveAngularModule = function (moduleName) {
+        var angular = tools.checkAngularLibrary();
+        return tools.checkAngularModuleExist(angular, moduleName);
     };
 
-    tools.CheckAngularLibrary = function () {
+    tools.checkAngularLibrary = function () {
         var angular = window.angular;
         if (angular === null || angular === undefined || angular === {} || angular === '') {
             throw new Error('The "AngularJs" library must be defined before being used.');
@@ -21,7 +21,7 @@
         return angular;
     };
 
-    tools.CheckAngularModuleExist = function (angular, moduleName) {
+    tools.checkAngularModuleExist = function (angular, moduleName) {
         var module = angular.module(moduleName);
         if (module === null || module === undefined || module === {} || module === '') {
             throw new Error('The "' + moduleName + '" module must be defined before being used.');
@@ -29,39 +29,38 @@
         return module;
     };
 
-    tools.CheckIsNull = function (object) {
+    tools.checkIsNull = function (object) {
         return object === null;
     };
 
-    tools.CheckIsUndefined = function (object) {
+    tools.checkIsUndefined = function (object) {
         return object === undefined;
     };
 
-    tools.CheckIsEmptyObject = function (object) {
+    tools.checkIsEmptyObject = function (object) {
         return object === {};
     };
 
-    tools.CheckIsEmptyString = function (object) {
+    tools.checkIsEmptyString = function (object) {
         return object === '';
     };
 
-    tools.CheckIsUnvalidObject = function (object, checkNullity, checkUndefined, checkEmptyObject, checkEmptyString) {
+    tools.checkIsUnvalidObject = function (object, checkNullity, checkUndefined, checkEmptyObject, checkEmptyString) {
         var result = false;
         if (checkNullity) {
-            result = result || tools.CheckIsNull(object);
+            result = result || tools.checkIsNull(object);
         }
         if (checkUndefined) {
-            result = result || tools.CheckIsUndefined(object);
+            result = result || tools.checkIsUndefined(object);
         }
         if (checkEmptyObject) {
-            result = result || tools.CheckIsEmptyObject(object);
+            result = result || tools.checkIsEmptyObject(object);
         }
         if (checkEmptyString) {
-            result = result || tools.CheckIsEmptyString(object);
+            result = result || tools.checkIsEmptyString(object);
         }
-
         return result;
     };
 
     window.tools = tools;
-})(window, document);
+}(window));

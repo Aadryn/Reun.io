@@ -5,4 +5,4 @@
 
     require('./gulp/gulp.tasks')(plugins);
 
-})(module, require);
+}(module, require));
