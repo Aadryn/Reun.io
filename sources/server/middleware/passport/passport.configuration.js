@@ -20,9 +20,9 @@
         require('./passport.strategy.twitter.configuration')(application, passport);
         application.use(timeoutConfiguration.HaltOnTimeout);
 
-        return passport
+        return passport;
     };
 
     module.exports = middleware;
 
-})(module, require);
+}(module, require));

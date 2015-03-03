@@ -8,9 +8,9 @@
         application.use(cookieParser());
         application.use(timeoutConfiguration.HaltOnTimeout);
 
-        return cookieParser
+        return cookieParser;
     };
 
     module.exports = middleware;
 
-})(module, require);
+}(module, require));

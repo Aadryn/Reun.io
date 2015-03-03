@@ -1,4 +1,4 @@
-(function (module, require) {
+(function () {
     'use strict';
 
-})(module, require);
+}(module, require));

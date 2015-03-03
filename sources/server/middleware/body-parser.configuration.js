@@ -13,9 +13,9 @@
         application.use(bodyParser.json());
         application.use(timeoutConfiguration.HaltOnTimeout);
 
-        return bodyParser
+        return bodyParser;
     };
 
     module.exports = middleware;
 
-})(module, require);
+}(module, require));

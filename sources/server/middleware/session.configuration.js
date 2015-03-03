@@ -14,9 +14,9 @@
         application.use(session(sessionOptions));
         application.use(timeoutConfiguration.HaltOnTimeout);
 
-        return session
+        return session;
     };
 
     module.exports = middleware;
 
-})(module, require);
+}(module, require));

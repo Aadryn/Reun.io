@@ -25,8 +25,7 @@
         }
         var eventStore = require('eventstore')(options);
 
-        eventStore.init(function (error) {
-            console.log(error);
+        eventStore.init(function () {
         });
 
         return {
@@ -36,4 +35,4 @@
 
     module.exports = storage;
 
-})(module, require);
+}(module, require));

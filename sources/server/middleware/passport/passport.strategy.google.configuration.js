@@ -11,9 +11,6 @@
         };
 
         var verifyUserValidity = function (identifier, profile, done) {
-            console.log('Google');
-            console.log('Identifier :' + identifier);
-            console.log('Profile :' + profile);
             return done('');
         };
 
@@ -29,4 +26,4 @@
 
     module.exports = configuration;
 
-})(module, require);
+}(module, require));

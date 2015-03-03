@@ -12,10 +12,6 @@
         };
 
         var verifyUserValidity = function (accessToken, refreshToken, profile, done) {
-            console.log('Microsoft');
-            console.log('AccessToken :' + accessToken);
-            console.log('RefreshToken :' + refreshToken);
-            console.log('Profile :' + profile);
             return done('');
         };
 
@@ -31,4 +27,4 @@
 
     module.exports = configuration;
 
-})(module, require);
+}(module, require));

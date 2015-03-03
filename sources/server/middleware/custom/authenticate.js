@@ -1,8 +1,8 @@
-(function (module, require) {
+(function (module) {
     'use strict';
 
     var isAuthenticated = function (request, response, next) {
-        if (!req.isAuthenticated()) {
+        if (!request.isAuthenticated()) {
             response.send(401);
         } else {
             next();
@@ -15,4 +15,4 @@
 
     module.exports = middleware;
 
-})(module, require);
+}(module));

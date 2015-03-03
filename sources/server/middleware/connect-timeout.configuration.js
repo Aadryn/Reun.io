@@ -9,15 +9,17 @@
         application.use(connectTimeout(defaultTimeout));
 
         var haltOnTimeout = function (req, res, next) {
-            if (!req.timedout) next();
+            if (!req.timedout) {
+                next();
+            }
         };
 
         return {
             Timeout: connectTimeout,
             HaltOnTimeout: haltOnTimeout
-        }
+        };
     };
 
     module.exports = middleware;
 
-})(module, require);
+}(module, require));

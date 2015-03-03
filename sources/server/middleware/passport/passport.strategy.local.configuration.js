@@ -20,4 +20,4 @@
 
     module.exports = configuration;
 
-})(module, require);
+}(module, require));

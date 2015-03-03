@@ -8,9 +8,9 @@
         application.use(morgan('combined'));
         application.use(timeoutConfiguration.HaltOnTimeout);
 
-        return morgan
+        return morgan;
     };
 
     module.exports = middleware;
 
-})(module, require);
+}(module, require));

@@ -1,7 +1,7 @@
-(function (module, require) {
+(function (module) {
     'use strict';
 
-    var route = function (application, password) {
+    var route = function (application) {
         application.get('/', function (request, response) {
             response.send('Hello world');
         });
@@ -13,4 +13,4 @@
 
     module.exports = route;
 
-})(module, require);
+}(module, require));

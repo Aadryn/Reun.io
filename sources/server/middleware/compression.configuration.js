@@ -11,9 +11,9 @@
         application.use(compression(compressionOptions));
         application.use(timeoutConfiguration.HaltOnTimeout);
 
-        return compression
+        return compression;
     };
 
     module.exports = middleware;
 
-})(module, require);
+}(module, require));

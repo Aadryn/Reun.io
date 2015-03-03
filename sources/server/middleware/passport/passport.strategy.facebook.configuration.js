@@ -8,14 +8,10 @@
         var facebookSecret = {
             clientID: '325956490943195',
             clientSecret: 'de17509ca1649b094dac094a6a4904b4',
-            callbackURL: "http://localhost:3000/authentication/facebook/callback"
+            callbackURL: 'http://localhost:3000/authentication/facebook/callback'
         };
 
         var verifyUserValidity = function (accessToken, refreshToken, profile, done) {
-            console.log('Facebook');
-            console.log('AccessToken :' + accessToken);
-            console.log('RefreshToken :' + refreshToken);
-            console.log('Profile :' + profile);
             return done('');
         };
 
@@ -31,4 +27,4 @@
 
     module.exports = configuration;
 
-})(module, require);
+}(module, require));
