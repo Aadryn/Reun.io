@@ -1,10 +1,11 @@
-(function (module, require, undefined) {
+(function (module, require) {
     'use strict';
 
     var plugins = function () {
         var gulp = require('gulp');
         return {
             // Node - Plugins
+            del: require('del'),
             wiredep: require('wiredep').stream,
 
             // Gulp - Plugins
