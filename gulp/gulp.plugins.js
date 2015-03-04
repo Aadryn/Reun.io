@@ -7,6 +7,7 @@
             // Node - Plugins
             del: require('del'),
             wiredep: require('wiredep').stream,
+            karma: require('karma'),
 
             // Gulp - Plugins
             gulp: require('gulp-help')(gulp),
@@ -14,6 +15,7 @@
             gulp_concat: require('gulp-concat'),
             gulp_debug: require('gulp-debug'),
             gulp_eslint: require('gulp-eslint'),
+            gulp_filter: require('gulp-filter'),
             gulp_footer: require('gulp-footer'),
             gulp_header: require('gulp-header'),
             gulp_inject: require('gulp-inject'),
