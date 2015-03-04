@@ -17,6 +17,7 @@
             gulp_footer: require('gulp-footer'),
             gulp_header: require('gulp-header'),
             gulp_inject: require('gulp-inject'),
+            gulp_livereload: require('gulp-livereload'),
             gulp_minify_css: require('gulp-minify-css'),
             gulp_minify_html: require('gulp-minify-html'),
             gulp_ng_html2js: require('gulp-ng-html2js'),

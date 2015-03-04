@@ -1,14 +1,7 @@
 (function (module) {
     'use strict';
 
-    var route = function (application) {
-        application.get('/', function (request, response) {
-            response.send('Hello world');
-        });
-
-        application.get('/authentication/login', function (request, response) {
-            response.send('');
-        });
+    var route = function () {
     };
 
     module.exports = route;

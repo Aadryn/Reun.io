@@ -14,8 +14,7 @@
                 .pipe(plugins.gulp.dest(configurations.builds.server.baseOutputDirectory))
         }, {aliases: ['b:s', 'B:S']});
 
-        plugins.gulp.task('build', 'Build the application.', ['build:client', 'build:server'], function (callback) {
-        }, {aliases: ['b', 'B']});
+        plugins.gulp.task('build', 'Build the application.', ['build:client', 'build:server'], null, {aliases: ['b', 'B']});
     };
 
     module.exports = tasks;

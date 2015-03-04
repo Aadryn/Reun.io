@@ -23,7 +23,8 @@
                         'sources/client/application/reunio.application.js',
                         'sources/client/application/reunio.configuration.js',
                         'sources/client/application/**/*.module.js',
-                        'sources/client/application/**/*.configuration.js'
+                        'sources/client/application/**/*.configuration.js',
+                        'sources/client/application/**/*.controller.js'
                     ],
                     styles: [
                         'sources/client/assets/styles/default.css'
@@ -36,7 +37,9 @@
                 }
             },
             options: {
-                del: {},
+                del: {
+                    force: true
+                },
                 wiredep: {},
                 inject: {
                     name: 'application',
@@ -45,11 +48,14 @@
                 ngHtml2js: {
                     template: '    $templateCache.put(\'<%= template.url %>\', \'<%= template.escapedContent %>\');'
                 },
+                rename: {
+                    extname: ".min.js"
+                },
                 usemin: {
-                    "styles_bower": [plugins.gulp_minify_css(), plugins.gulp_rev()],
-                    "scripts_bower": [plugins.gulp_uglify(), plugins.gulp_rev()],
-                    "styles_application": [plugins.gulp_minify_css(), plugins.gulp_rev()],
-                    "scripts_application": [plugins.gulp_uglify(), plugins.gulp_rev()]
+                    "styles_bower": [plugins.gulp_debug(), plugins.gulp_minify_css(), plugins.gulp_rev()],
+                    "scripts_bower": [plugins.gulp_debug(), plugins.gulp_uglify(), plugins.gulp_rev()],
+                    "styles_application": [plugins.gulp_debug(), plugins.gulp_minify_css(), plugins.gulp_rev()],
+                    "scripts_application": [plugins.gulp_debug(), plugins.gulp_uglify(), plugins.gulp_rev()]
                 },
                 uglify: {
                     indent_start: 0,     // start indentation on every line (only when `beautify`)
