@@ -1,7 +1,7 @@
-(function (module, require) {
+(function (module) {
     'use strict';
 
-    var plugins = function (plugins) {
+    var components = function (plugins) {
 
         return {
             builds: {
@@ -49,13 +49,13 @@
                     template: '    $templateCache.put(\'<%= template.url %>\', \'<%= template.escapedContent %>\');'
                 },
                 rename: {
-                    extname: ".min.js"
+                    extname: '.min.js'
                 },
                 usemin: {
-                    "styles_bower": [plugins.gulp_debug(), plugins.gulp_minify_css(), plugins.gulp_rev()],
-                    "scripts_bower": [plugins.gulp_debug(), plugins.gulp_uglify(), plugins.gulp_rev()],
-                    "styles_application": [plugins.gulp_debug(), plugins.gulp_minify_css(), plugins.gulp_rev()],
-                    "scripts_application": [plugins.gulp_debug(), plugins.gulp_uglify(), plugins.gulp_rev()]
+                    "styles_bower": [plugins.gulpDebug(), plugins.gulpMinifyCss(), plugins.gulpRev()],
+                    "scripts_bower": [plugins.gulpDebug(), plugins.gulpUglify(), plugins.gulpRev()],
+                    "styles_application": [plugins.gulpDebug(), plugins.gulpMinifyCss(), plugins.gulpRev()],
+                    "scripts_application": [plugins.gulpDebug(), plugins.gulpUglify(), plugins.gulpRev()]
                 },
                 uglify: {
                     indent_start: 0,     // start indentation on every line (only when `beautify`)
@@ -78,6 +78,6 @@
         }
     };
 
-    module.exports = plugins;
+    module.exports = components;
 
 })(module, require);
